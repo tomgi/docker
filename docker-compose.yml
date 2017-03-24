@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  products-service:
+    build: ./products-service
+    volumes:
+      - ./products-service:/usr/src/app
+    ports:
+      - 4567:4567
+  website:
+    build: ./website
+    volumes:
+      - ./website:/usr/src/app
+    ports:
+      - 3000:3000
+    depends_on: 
+      - products-service
